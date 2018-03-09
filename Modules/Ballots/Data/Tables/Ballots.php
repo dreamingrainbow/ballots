@@ -21,6 +21,7 @@ class Ballots extends Table
                 $stmt->execute([$ballot->name, $ballot->description]);
                 $ballotId = $this->connection()->lastInsertId();
                 $this->connection()->commit();
+                return $ballotId;
             }
             catch(PDOExecption $e) {
                 $this->connection->rollback();
@@ -85,16 +86,17 @@ class Ballots extends Table
     }
     
     public function castVoteByBallotId(VoteModel $vote, $id) {
-        $ballotId = false;
+        $voteId = false;
         try
         {
-            $stmt = $this->connection()->prepare("INSERT INTO Ballots set subject=?");
+            $stmt = $this->connection()->prepare("INSERT INTO Ballots set ballot_id=?, abstain=?, yea=?, nea=?");
             try
             {
                 $this->connection()->beginTransaction();
-                $stmt->execute([$ballot->subject]);
-                $ballotId = $this.connection()->lastInsertId();
+                $stmt->execute([$vote->ballot_id, $vote->abstain, $vote->yea, $vote->nea]);
+                $voteId = $this->connection()->lastInsertId();
                 $this->connection()->commit();
+                return $voteId;
             }
             catch(PDOExecption $e) {
                 $this->connection->rollback();
