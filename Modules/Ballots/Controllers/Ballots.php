@@ -39,7 +39,7 @@ class Ballots extends Controller
             $valid = [false, false];
             //lets validate what we need to!
             if(isset($_POST['name']) && $_POST['name']) {
-                 if(preg_match ('/^a-zA-Z0-9 /i', $_POST['name'])) {
+                 if(preg_match ('/^[a-zA-Z0-9 \s]+$/', $_POST['name'])) {
                     $name = $_POST['name'];
                      $valid[0] = true;
                  } else {
@@ -47,7 +47,7 @@ class Ballots extends Controller
                  }
             }
             if(isset($_POST['description']) && $_POST['description']) {
-                 if(preg_match ('/^a-zA-Z0-9 /i', $_POST['description'])) {
+                 if(preg_match ('/^[a-zA-Z0-9 \s]+$/', $_POST['description'])) {
                     $description = $_POST['description'];
                      $valid[1] = true;
                  } else {
