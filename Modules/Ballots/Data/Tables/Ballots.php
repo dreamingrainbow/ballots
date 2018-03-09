@@ -3,8 +3,8 @@ namespace  Modules\Ballots\Data\Tables;
 use PDO;
 use PDOException;
 use Library\Data\Pdo\MySql\Table;
-use Module\Ballots\Data\Model\Ballot as BallotModel;
-use Module\Ballots\Data\Model\Vote as VoteModel;
+use Modules\Ballots\Data\Model\Ballot as BallotModel;
+use Modules\Ballots\Data\Model\Vote as VoteModel;
 class Ballots extends Table
 {
     protected $_name = 'Ballots';
