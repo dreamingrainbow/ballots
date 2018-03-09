@@ -14,11 +14,11 @@ class Ballots extends Table
         $ballotId = false;
         try
         {
-            $stmt = $this->connection()->prepare("INSERT INTO Ballots set subject=?");
+            $stmt = $this->connection()->prepare("INSERT INTO Ballots set name=?, description=?");
             try
             {
                 $this->connection()->beginTransaction();
-                $stmt->execute([$ballot->subject]);
+                $stmt->execute([$ballot->name, $ballot->description]);
                 $ballotId = $this.connection()->lastInsertId();
                 $this->connection()->commit();
             }
