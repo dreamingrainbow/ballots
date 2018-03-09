@@ -34,7 +34,7 @@ class Ballots extends Controller
     *   Add A Ballot
     */
     public function add() {
-        if($_POST['process'] === 'Add-Ballot')
+        if(isset($_POST['process']) && $_POST['process'] === 'Add-Ballot')
         {
             $valid = [false, false];
             //lets validate what we need to!
