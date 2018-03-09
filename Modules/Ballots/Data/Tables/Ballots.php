@@ -68,17 +68,17 @@ class Ballots extends Table
         $sql = 'SELECT Ballots.name, count(Votes.yea) as YeaCount FROM Votes';	
         $sql .= ' INNER JOIN Ballots on (Votes.ballot_id = Ballots.id)';
         $sql .= 'WHERE Ballots.id = ?';
-        $sql .= " and Votes.yea = 'true'";       
+        $sql .= " and Votes.nea = 'true'";       
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
         $sth->execute([$id]);
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function getYeaVotesByBallotId($id) {
+    public function getAbstainVotesByBallotId($id) {
         $sql = 'SELECT Ballots.name, count(Votes.yea) as YeaCount FROM Votes';	
         $sql .= ' INNER JOIN Ballots on (Votes.ballot_id = Ballots.id)';
         $sql .= 'WHERE Ballots.id = ?';
-        $sql .= " and Votes.yea = 'true'";       
+        $sql .= " and Votes.abstain = 'true'";       
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
         $sth->execute([$id]);	
         return $sth->fetchAll(PDO::FETCH_ASSOC);
