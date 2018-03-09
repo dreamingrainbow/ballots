@@ -6,29 +6,16 @@
         <meta name="author" content="Michael A. Dennis<michaeladennis@yahoo.com>">
     </head>
     <body>
-    <h1>K.I.S.S. PHP MVC</h1>    
-    <p>Interested in having your product developed with the K.I.S.S. PHP MVC framework? Roll out prototype applications in weeks, with extendable code from the start.</p>
-    <p> Don't settle with large backend frameworks that require large resource to maintain, update, extend, and overall develope with.
-    Getting started with K.I.S.S. is as easy as changing this page's content and adding more pages to the very basic routing process.!</p>
-    <br/>
-    <h2>Keep It Simple <abbr title="Stupid">******</abbr></h2>
-    <h3>Routing</h3>
-    <p>Held inside the ini is the basic route structure. Each route contains 4 elements. A Module, A Controller, An Action, and a Route Pattern.</p>
-    <h4>Modules</h4>
-    <p>Each module is its own set of commands to create the functionality you want for that section or process of your application. These have to be unique as they are folders.
-    <small>One thing to consider Windows 10 bugs out on directories named "aux". I know, silly them right!</small></p>
-    <h4>Controllers</h4>
-    <p>Controllers separate the individual sections of the over all operations of the module you are working with. Each controller name must also be unique.
-    However, Action names can be repeated with-in many controllers but never the same one.</p>
-    <h4>Actions</h4>
-    <p>Each action is connected to a view, however, K.I.S.S. understand's if your don't need any controller logic, so you don't have to create the action for the view to be accessed.</p>
-    <h4>Views</h4>
-    <p>View's make up the overall layout and design patterns of your site. View's and View Partials, allow you to segment the front end as much as you need. Want to use a theme?
-    Create partials of your theme's parts and use them through out your applications Actions/Views.</p>
-    
-    
-    <h2>That's it. Simple.</h2>
-    <p>Want to extend it.. Go for it. Using PHP 5.6+ Standard namespacing or go for 7.x, since K.I.S.S PHP MVC work's on 5.x you should have
-    no problem creating a wonderful working application in weeks instead of months.</p>
+        <h1>Voting is a great thing. Create a Ballot, let the people speak.</h1>
+        
+        <ul>            
+            <li>Search</li>
+            <li>Create Ballot</li>            
+        </ul>
+        <form onSubmit="ballotLookUp()">
+            <label>Ballot Look-up<label>
+            <input type="number" min=1 name="ballot_id" />
+            <button type="submit">Search</button>
+        </form>
     </body>
 </html>
