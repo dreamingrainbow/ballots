@@ -48,7 +48,7 @@ class Ballots extends Controller
                  }
             }
             if(isset($_POST['description']) && $_POST['description']) {
-                 if(preg_match ('/^[a-zA-Z0-9 \-]+$/', $_POST['description'])) {
+                 if(preg_match ('/^[a-zA-Z0-9 \-!,.]+$/', $_POST['description'])) {
                     $description = $_POST['description'];
                      $valid[1] = true;
                  } else {
