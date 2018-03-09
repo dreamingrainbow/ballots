@@ -82,7 +82,7 @@ class Ballots extends Controller
             //lets validate what we need to!
             if($_POST['vote']) {
                 $this->newVote = $this->getModel('Vote','Ballots');
-                switch(strtolower($_POST['vote']) {
+                switch(strtolower($_POST['vote'])) {
                      case 'nea':
                         $this->newVote->abstain = false;
                         $this->newVote->yea = false;
