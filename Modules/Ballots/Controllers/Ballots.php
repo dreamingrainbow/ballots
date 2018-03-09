@@ -72,7 +72,6 @@ class Ballots extends Controller
                     echo json_encode([$valid, $newBallet]);
                 } else {
                     $this->valid = $valid;
-                    $this->newBallet = $newBallet;
                 }
             }
         }
