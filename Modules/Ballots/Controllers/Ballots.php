@@ -73,7 +73,7 @@ class Ballots extends Controller
     *   Cast a vote for a Ballot
     */
     public function cast() {
-        $ballot_id = $this->getRequest()->getParam('ballot_id')
+        $ballot_id = $this->getRequest()->getParam('ballot_id');
         if($ballot_id) {
             return $this->fileNotFound('Ballot Id was missing, and ballot could not be found.');
         }
