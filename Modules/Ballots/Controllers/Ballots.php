@@ -36,7 +36,7 @@ class Ballots extends Controller
     public function add() {
         if(isset($_POST['process']) && $_POST['process'] === 'Create-Ballot')
         {
-            debug($_POST);
+            //debug($_POST);
             $valid = [false, false];
             //lets validate what we need to!
             if(isset($_POST['name']) && $_POST['name']) {
@@ -56,15 +56,15 @@ class Ballots extends Controller
                  }
             }
             if($valid[0] && $valid[1]) {
-                $newBallet = $this->getModel('Ballot','Ballots');
-                $newBallet->name = $name;
-                $newBallet->description = $description;
+                $this->view->newBallet = $this->getModel('Ballot','Ballots');
+                $this->view->newBallet->name = $name;
+                $this->view->newBallet->description = $description;
                 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
-                    echo json_encode($this->getTable('Ballots','Ballots')->createBallot($newBallet));
+                    echo json_encode($this->getTable('Ballots','Ballots')->createBallot($this->view->newBallet));
                 } else {
-                    $this->newBalletId = $this->getTable('Ballots','Ballots')->createBallot($newBallet);
+                    $this->view->newBalletId = $this->getTable('Ballots','Ballots')->createBallot($this->view->newBallet);
                 }
             } else {
                 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
@@ -72,7 +72,7 @@ class Ballots extends Controller
                     header('Content-Type: application/json');
                     echo json_encode([$valid, $newBallet]);
                 } else {
-                    $this->valid = $valid;
+                    $this->view->valid = $valid;
                 }
             }
         }
@@ -90,17 +90,17 @@ class Ballots extends Controller
         {            
             //lets validate what we need to!
             if(isset($_REQUEST['vote']) && $_POST['vote']) {
-                $this->newVote = $this->getModel('Vote','Ballots');
+                $this->view->newVote = $this->getModel('Vote','Ballots');
                 switch(strtolower($_POST['vote'])) {
                      case 'nea':
-                        $this->newVote->abstain = false;
-                        $this->newVote->yea = false;
-                        $this->newVote->nea = true;                    
+                        $this->view->newVote->abstain = false;
+                        $this->view->newVote->yea = false;
+                        $this->view->newVote->nea = true;                    
                         break;
                      case 'yea':
-                        $this->newVote->abstain = false;
-                        $this->newVote->yea = false;
-                        $this->newVote->nea = true;
+                        $this->view->newVote->abstain = false;
+                        $this->view->newVote->yea = false;
+                        $this->view->newVote->nea = true;
                         break;
                      case 'abstain':
                      default:
@@ -111,9 +111,9 @@ class Ballots extends Controller
             if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                 $this->setNoRenderView();
                 header('Content-Type: application/json');
-                echo json_encode($this->getTable('Votes','Ballots')->castVoteByBallotId($this->newVote, $ballot_id));
+                echo json_encode($this->getTable('Votes','Ballots')->castVoteByBallotId($this->view->newVote, $ballot_id));
             } else {
-                $this->newVoteId = $this->getTable('Votes','Ballots')->castVoteByBallotId($this->newVote, $ballot_id);
+                $this->view->newVoteId = $this->getTable('Votes','Ballots')->castVoteByBallotId($this->view->newVote, $ballot_id);
             }
         }
     }
@@ -127,7 +127,7 @@ class Ballots extends Controller
             header('Content-Type: application/json');
             echo json_encode($this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id')));
         } else {
-            $this->results = $this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id'));
+            $this->view->results = $this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id'));
         }    
     }
 }
