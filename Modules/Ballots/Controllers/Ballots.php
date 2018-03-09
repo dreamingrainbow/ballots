@@ -61,9 +61,9 @@ class Ballots extends Controller
                 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
-                    echo json_encode($this->getTable('Votes','Ballots')->createBallot($newBallet));
+                    echo json_encode($this->getTable('Ballots','Ballots')->createBallot($newBallet));
                 } else {
-                    $this->newBalletId = $this->getTable('Votes','Ballots')->createBallot($newBallet);
+                    $this->newBalletId = $this->getTable('Ballots','Ballots')->createBallot($newBallet);
                 }
             } else {
                 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
@@ -71,7 +71,8 @@ class Ballots extends Controller
                     header('Content-Type: application/json');
                     echo json_encode([$valid, $newBallet]);
                 } else {
-                    $this->newBalletId = $this->getTable('Votes','Ballots')->createBallot($newBallet);
+                    $this->valid = $valid;
+                    $this->newBallet = $newBallet;
                 }
             }
         }
