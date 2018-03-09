@@ -19,7 +19,7 @@ class Ballots extends Table
             {
                 $this->connection()->beginTransaction();
                 $stmt->execute([$ballot->name, $ballot->description]);
-                $ballotId = $this.connection()->lastInsertId();
+                $ballotId = $this->connection()->lastInsertId();
                 $this->connection()->commit();
             }
             catch(PDOExecption $e) {
