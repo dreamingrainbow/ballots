@@ -7,11 +7,11 @@ class Ballots extends Controller
     *   Search for Ballots 
     */    
     public function search(){
-        if($_GET['q']) {
-            $q = $_GET['q'];
-            if($_GET['f']) {
+        if($_POST['q']) {
+            $q = $_POST['q'];
+            if($_POST['f']) {
                 $filters = [];
-                switch(strtolower($_GET['f'])) {                        
+                switch(strtolower($_POST['f'])) {                        
                     case 'name':
                         array_push($filters, 'name');
                         break;   
@@ -58,7 +58,13 @@ class Ballots extends Controller
                 $newBallet = $this->getModel('Ballot','Ballots');
                 $newBallet->name = $name;
                 $newBallet->description = $description;
-                $newBalletId = $this->getTable('Roles','Auth')->createBallot($newBallet);
+                if(strtolower($_REQUEST['output']) === 'json') {
+                    $this->setNoRenderView();
+                    header('Content-Type: application/json');
+                    echo json_encode($this->getTable('Votes','Ballots')->createBallot($newBallet));
+                } else {
+                    $this->newBalletId = $this->getTable('Votes','Ballots')->createBallot($newBallet);
+                }
             }            
         }
     }
@@ -93,7 +99,7 @@ class Ballots extends Controller
                         break;
                  }
             }
-            if(strtolower($_GET['output']) === 'json') {
+            if(strtolower($_REQUEST['output']) === 'json') {
                 $this->setNoRenderView();
                 header('Content-Type: application/json');
                 echo json_encode($this->getTable('Votes','Ballots')->castVoteByBallotId($this->newVote, $ballot_id));
@@ -107,7 +113,7 @@ class Ballots extends Controller
     *   Search for Ballots 
     */
     public function results() {
-        if(strtolower($_GET['output']) === 'json') {
+        if(strtolower($_REQUEST['output']) === 'json') {
             $this->setNoRenderView();
             header('Content-Type: application/json');
             echo json_encode($this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id')));
