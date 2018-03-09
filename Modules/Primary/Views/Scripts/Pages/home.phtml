@@ -6,16 +6,22 @@
         <meta name="author" content="Michael A. Dennis<michaeladennis@yahoo.com>">
     </head>
     <body>
-        <h1>Voting is a great thing. Create a Ballot, let the people speak.</h1>
-        
+        <h1>Voting is a great thing. Create a Ballot, let the people speak.</h1>        
         <ul>            
-            <li>Search</li>
-            <li>Create Ballot</li>            
+            <li><a href="/Search">Search</a></li>
+            <li><a href="/Ballots/New">Create Ballot</a></li>            
         </ul>
         <form onSubmit="ballotLookUp()">
             <label>Ballot Look-up<label>
             <input type="number" min=1 name="ballot_id" />
             <button type="submit">Search</button>
+        </form>        
+        <form onSubmit="createBallot()">
+            <label>Ballot Name<label>
+            <input type="text" name="name" />
+            <label>Ballot Description<label>
+            <input type="text" name="description" />                
+            <button type="submit">Create Ballot</button>
         </form>
     </body>
 </html>
