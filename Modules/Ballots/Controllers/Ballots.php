@@ -38,7 +38,7 @@ class Ballots extends Controller
         {
             $valid = [false, false];
             //lets validate what we need to!
-            if($_POST['name']) {
+            if(isset($_POST['name']) && $_POST['name']) {
                  if(preg_match ('/[^a-zA-Z0-9 ]/i', $_POST['name'])) {
                     $name = $_POST['name'];
                      $valid[0] = true;
@@ -46,7 +46,7 @@ class Ballots extends Controller
                     $valid[0] = false;
                  }
             }
-            if($_POST['description']) {
+            if(isset($_POST['description']) && $_POST['description']) {
                  if(preg_match ('/[^a-zA-Z0-9 ]/i', $_POST['description'])) {
                     $description = $_POST['description'];
                      $valid[1] = true;
@@ -58,7 +58,7 @@ class Ballots extends Controller
                 $newBallet = $this->getModel('Ballot','Ballots');
                 $newBallet->name = $name;
                 $newBallet->description = $description;
-                if(strtolower($_REQUEST['output']) === 'json') {
+                if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
                     echo json_encode($this->getTable('Votes','Ballots')->createBallot($newBallet));
@@ -66,7 +66,7 @@ class Ballots extends Controller
                     $this->newBalletId = $this->getTable('Votes','Ballots')->createBallot($newBallet);
                 }
             } else {
-                if(strtolower($_REQUEST['output']) === 'json') {
+                if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
                     echo json_encode([$valid, $newBallet]);
@@ -85,10 +85,10 @@ class Ballots extends Controller
         if($ballot_id) {
             return $this->fileNotFound('Ballot Id was missing, and ballot could not be found.');
         }
-        if($_POST['process'] === 'Cast-Ballot')
+        if(isset($_POST['process']) && $_POST['process'] === 'Cast-Ballot')
         {            
             //lets validate what we need to!
-            if($_POST['vote']) {
+            if(isset($_REQUEST['vote']) && $_POST['vote']) {
                 $this->newVote = $this->getModel('Vote','Ballots');
                 switch(strtolower($_POST['vote'])) {
                      case 'nea':
@@ -107,7 +107,7 @@ class Ballots extends Controller
                         break;
                  }
             }
-            if(strtolower($_REQUEST['output']) === 'json') {
+            if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                 $this->setNoRenderView();
                 header('Content-Type: application/json');
                 echo json_encode($this->getTable('Votes','Ballots')->castVoteByBallotId($this->newVote, $ballot_id));
@@ -121,7 +121,7 @@ class Ballots extends Controller
     *   Search for Ballots 
     */
     public function results() {
-        if(strtolower($_REQUEST['output']) === 'json') {
+        if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
             $this->setNoRenderView();
             header('Content-Type: application/json');
             echo json_encode($this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id')));
