@@ -34,11 +34,11 @@ class Ballots extends Table
         }
     }
     
-    public function getBallots( $id, $limit = 10, $offset = 0 ) { 
+    public function getBallots( $limit = 10, $offset = 0 ) { 
         $sql = 'SELECT Ballots.* FROM Ballots';
         $sql .= ' LIMIT ?,?';        
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
-        $sth->execute([$id, $limit, $offset]);	
+        $sth->execute([$limit, $offset]);	
         return $sth->fetch(PDO::FETCH_ASSOC);  
     }
     
