@@ -34,6 +34,7 @@ class Ballots extends Controller
     *   Add A Ballot
     */
     public function add() {
+        debug($_GET,$_POST);
         if(isset($_POST['process']) && $_POST['process'] === 'Create-Ballot')
         {
             //debug($_POST);
