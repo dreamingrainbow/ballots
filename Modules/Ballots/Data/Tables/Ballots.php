@@ -36,7 +36,7 @@ class Ballots extends Table
     
     public function getBallots( $limit = 10, $offset = 0 ) { 
         $sql = 'SELECT Ballots.* FROM Ballots';
-        $sql .= ' ORDER BY Ballots.id DESC LIMIT ?,?';        
+        $sql .= ' ORDER BY Ballots.id LIMIT ?,?';        
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
         $sth->execute([$offset, $limit]);	
         return $sth->fetchAll(PDO::FETCH_ASSOC);  
