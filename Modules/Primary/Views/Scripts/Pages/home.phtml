@@ -50,7 +50,7 @@
                     
                     const ballot = {name, description,output:'json',process:'Create-Ballot'};  
                     var data = new FormData();
-                    data.append( "json", JSON.stringify( ballot ) );
+                    data.append( ballot );
                     fetch(`/${endPoint}`, {method:"POST", body: data})
                     .then(function(response) {
                         return response.json();
