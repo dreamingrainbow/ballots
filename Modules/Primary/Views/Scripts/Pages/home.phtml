@@ -27,7 +27,7 @@
             
                 function ballotLookUp() { 
                     const endPoint = '';        
-                    const ballot_id = this.body.querySelector('input[name="ballot_id"]');
+                    const ballot_id = this.document.querySelector('input[name="ballot_id"]');
                     fetch(`${endPoint}\${ballot_id}`)
                     .then(function(response) {
                         return response.json();
