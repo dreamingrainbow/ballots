@@ -41,15 +41,14 @@ class Ballots extends Table
         } else {
             $sql .= ' ORDER BY Ballots.id LIMIT ?';
         }
-        $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
+        $stmt = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
         if($offset !== 0) {            
-            $sth->execute([$offset, $limit]);	
+            $stmt->execute([$offset, $limit]);	
         } else {
-            $sth->execute([$limit]);
-            debug($sth);
+            $stmt->execute([$limit]);
         }
         
-        return $sth->fetchAll(PDO::FETCH_ASSOC);  
+        return $stmt->fetch(PDO::FETCH_ASSOC);  
     }
     
     public function getBallotById( $id ) { 
