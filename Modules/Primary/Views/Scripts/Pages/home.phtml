@@ -14,7 +14,7 @@
         
         <form action="" onSubmit="ballotResultsLookUp();return false;">
             <label>Ballot Results Look-up<label>
-            <input type="number" min=1 name="ballot_id" />
+            <input type="number" min=1 name="result_ballot_id" />
             <button type="submit">Search</button>
         </form>
         <form action="" onSubmit="ballotLookUp();return false;">
@@ -34,7 +34,7 @@
             
                 function ballotLookUp() { 
                     const endPoint = 'Ballot';        
-                    const ballot_id = this.document.querySelector('input[name="ballot_id"]').value;
+                    const ballot_id = this.document.querySelector('input[name="result_ballot_id"]').value;
                     fetch(`/${endPoint}/${ballot_id}?output=json`)
                     .then(function(response) {
                         return response.json();
