@@ -11,12 +11,12 @@
             <li><a href="/Search">Search</a></li>
             <li><a href="/Create-Ballot">Create Ballot</a></li>            
         </ul>
-        <form onSubmit="ballotLookUp();">
+        <form action="javascript:void();" onSubmit="ballotLookUp();">
             <label>Ballot Look-up<label>
             <input type="number" min=1 name="ballot_id" />
             <button type="submit">Search</button>
         </form>        
-        <form onSubmit="createBallot();">
+        <form action="javascript:void();" onSubmit="createBallot();">
             <label>Ballot Name<label>
             <input type="text" name="name" />
             <label>Ballot Description<label>
@@ -34,12 +34,13 @@
                     })
                     .then(function(ballot) {
                         console.log(ballot);
-                        return false;
                     })
                     .catch( error => {
                         console.log(error);
                         return false;
-                    });//Add Error Message to page!                    
+                    });//Add Error Message to page!          
+                    
+                        return false;
                 }
                 function createBallot() { 
                     return false;
