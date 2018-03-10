@@ -19,7 +19,7 @@ class Pages extends Controller
             if(preg_match ('/^[0-9]+$/', $_REQUEST['offset'])) {
                 $offset = $_REQUEST['offset'];
             } else {
-                $offset = 10;        
+                $offset = 0;        
             }
         } else {
             $offset = 0;
