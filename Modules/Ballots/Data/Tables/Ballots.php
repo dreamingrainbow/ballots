@@ -64,18 +64,17 @@ class Ballots extends Table
     public function getResultByBallotId($id) { 
         $sql = "SELECT Ballots.name, Ballots.description, Votes.*, ";
         $sql .= "(SELECT count(*) FROM Votes WHERE abstain=true and ballot_id=?) as AbstainCount ";
-        //$sql .= "(SELECT count(*) FROM Votes WHERE yea='true' and ballot_id=?) as YeaCount, ";
-        //$sql .= "(SELECT count(*) FROM Votes WHERE nea='true' and ballot_id=?) as NeaCount ";
+        $sql .= "(SELECT count(*) FROM Votes WHERE yea='true' and ballot_id=?) as YeaCount, ";
+        $sql .= "(SELECT count(*) FROM Votes WHERE nea='true' and ballot_id=?) as NeaCount ";
         $sql .= "FROM Votes";
         $sql .= ' LEFT JOIN Ballots on (Votes.ballot_id = Ballots.id)';
         $sql .= ' WHERE Ballots.id = ?';  
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
         $sth->bindParam(1, $id, PDO::PARAM_INT);
-        //$sth->bindParam(2, $id, PDO::PARAM_INT);
-        //$sth->bindParam(3, $id, PDO::PARAM_INT);
-        //$sth->bindParam(4, $id, PDO::PARAM_INT);
+        $sth->bindParam(2, $id, PDO::PARAM_INT);
+        $sth->bindParam(3, $id, PDO::PARAM_INT);
+        $sth->bindParam(4, $id, PDO::PARAM_INT);
         $sth->execute();
-        debug($id);
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     
