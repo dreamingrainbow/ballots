@@ -45,7 +45,7 @@ class Ballots extends Table
         if($offset !== 0) {            
             $stmt->execute([$offset, $limit]);	
         } else {
-            $stmt->execute([$limit]);
+            $stmt->execute($limit);
         }
         
         return $stmt->fetch(PDO::FETCH_ASSOC);  
