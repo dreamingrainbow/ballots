@@ -51,7 +51,7 @@
                     const ballot = {name, description,output:'json',process:'Create-Ballot'};    
                     fetch(`/${endPoint}`, {
                         method: 'POST',
-                        body: Object.keys(ballot).forEach(key => formData.append(key, ballot[key])),
+                        body: ballot,
                         headers: new Headers({'Content-Type': 'application/x-www-form-urlencoded'})
                     })                   
                     .then(function(response) {
