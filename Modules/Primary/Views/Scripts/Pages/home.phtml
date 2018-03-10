@@ -31,6 +31,38 @@
         </form>
                 <?=debug($this->ballots);?>
         <script>
+                function castBallot(ballot_id, vote) {
+                    const endPoint = 'Cast';
+                    const ballot = {abstain:'true', yea:'false', nea:'false', output:'json', process:'Cast-Ballot'}; 
+                    switch(vote) {
+                        case 'nea':
+                            ballot.abstain = 'false';
+                            ballot.nea = 'true';
+                            break;
+                        case 'yea':                            
+                            ballot.abstain = 'false';
+                            ballot.yea = 'true';
+                            break;
+                        case 'abstain':
+                        default:
+                            /* Everythings set!*/
+                    }                     
+                    var data = new FormData();
+                    Object.keys(ballot).forEach(key => {data.append( key, ballot[key])});
+                    fetch(`/${endPoint}`, {method:"POST", body: data})
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(ballot) {
+                        console.log(ballot);
+                    })
+                    .catch( error => {
+                        console.log(error);
+                        return false;
+                    });//Add Error Message to page!          
+                    
+                        return false;
+                }
             
                 function ballotLookUp() { 
                     const endPoint = 'Ballot';        
@@ -71,7 +103,6 @@
                     const endPoint = 'Create-Ballot';        
                     const name = this.document.querySelector('input[name="name"]').value;
                     const description = this.document.querySelector('input[name="description"]').value;
-                    
                     const ballot = {name, description,output:'json',process:'Create-Ballot'};  
                     var data = new FormData();
                     Object.keys(ballot).forEach(key => {data.append( key, ballot[key])});
