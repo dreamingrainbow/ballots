@@ -52,7 +52,7 @@
                     fetch(`/${endPoint}`, {
                         method: 'POST',
                         body: ballot,
-                        headers: new Headers({'Accept':'application/json'.'Content-Type': 'application/json'})
+                        headers: new Headers({'Accept':'application/json', 'Content-Type': 'application/json'})
                     })                   
                     .then(function(response) {
                         return response.json();
