@@ -28,7 +28,7 @@ class Pages extends Controller
         if(isset($_REQUEST['output']) && $_REQUEST['output'] === 'json') {
             $this->setNoRenderView();
             header('Content-Type: application/json');
-            echo json_encode($this->getTable('Ballots','Ballots')->getBallots($limit, $offset));
+            echo json_encode([ballots => $this->getTable('Ballots','Ballots')->getBallots($limit, $offset)]);
         } else {
             $this->ballots = $this->getTable('Ballots','Ballots')->getBallots($limit, $offset);
         }
