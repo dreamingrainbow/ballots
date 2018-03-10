@@ -11,12 +11,12 @@
             <li><a href="/Search">Search</a></li>
             <li><a href="/Create-Ballot">Create Ballot</a></li>            
         </ul>
-        <form onSubmit="ballotLookUp();">
+        <form onSubmit="ballotLookUp(this);">
             <label>Ballot Look-up<label>
             <input type="number" min=1 name="ballot_id" />
             <button type="submit">Search</button>
         </form>        
-        <form onSubmit="createBallot();">
+        <form onSubmit="createBallot(this);">
             <label>Ballot Name<label>
             <input type="text" name="name" />
             <label>Ballot Description<label>
