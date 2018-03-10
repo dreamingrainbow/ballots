@@ -44,10 +44,10 @@ class Ballots extends Table
         
         $stmt = $this->connection()->prepare($sql);	
         if($offset) {            
-            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(1, $offset, PDO::PARAM_INT);
+            $stmt->bindParam(2, $limit, PDO::PARAM_INT);
         } else {
-            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(1, $limit, PDO::PARAM_INT);
         }
         debug($stmt->execute());
         return $stmt->fetchAll(PDO::FETCH_ASSOC);  
