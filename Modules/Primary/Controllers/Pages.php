@@ -31,6 +31,7 @@ class Pages extends Controller
             echo json_encode([ballots => $this->getTable('Ballots','Ballots')->getBallots($limit, $offset)]);
         } else {
             $this->ballots = $this->getTable('Ballots','Ballots')->getBallots($limit, $offset);
+            debug($this->ballots, $limit, $offset);
         }
     }
 }
