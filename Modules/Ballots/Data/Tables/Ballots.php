@@ -62,12 +62,12 @@ class Ballots extends Table
     }
     
     public function getResultByBallotId($id) { 
-        $sql = 'SELECT Ballots.name, Ballots.description, Votes.*, 
-        (SELECT count(Votes.abstain) as AbstainCount FROM Votes where abstain=true and ballot_id=?) as AbstainCount, 
-        (SELECT count(Votes.yea) as YeaCount FROM Votes yea=true and ballot_id=?) as YeaCount, 
-        (SELECT count(Votes.nea) as NeaCount FROM Votes nea=true and ballot_id=?) as NeaCount, 
-        FROM Votes';
-        $sql .= ' INNER JOIN Ballots on (Votes.ballot_id = Ballots.id)';
+        $sql = "SELECT Ballots.name, Ballots.description, Votes.*, "
+        $sql .= "(SELECT count(Votes.abstain) as AbstainCount FROM Votes where abstain=true and ballot_id=?) as AbstainCount, " 
+        $sql .= "(SELECT count(Votes.yea) as YeaCount FROM Votes yea=true and ballot_id=?) as YeaCount, "
+        $sql .= "(SELECT count(Votes.nea) as NeaCount FROM Votes nea=true and ballot_id=?) as NeaCount, "
+        $sql .= "FROM Votes";
+        $sql .= ' LEFT JOIN Ballots on (Votes.ballot_id = Ballots.id)';
         $sql .= ' WHERE Ballots.id = ?';  
         debug($sql);
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
