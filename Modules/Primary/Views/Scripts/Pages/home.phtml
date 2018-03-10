@@ -29,7 +29,7 @@
                 function ballotLookUp() { 
                     const endPoint = 'Results';        
                     const ballot_id = this.document.querySelector('input[name="ballot_id"]').value;
-                    fetch(`/${endPoint}/${ballot_id}`)
+                    fetch(`/${endPoint}/${ballot_id}?output="json"`)
                     .then(function(response) {
                         return response.json();
                     })
@@ -44,6 +44,20 @@
                         return false;
                 }
                 function createBallot() { 
+                    const endPoint = 'Create-Ballot';        
+                    const name = this.document.querySelector('input[name="name"]').value;
+                    const description = this.document.querySelector('input[name="desciption"]').value;
+                    fetch(`/${endPoint}`, {name, description,output:'json'})
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(ballot) {
+                        console.log(ballot);
+                    })
+                    .catch( error => {
+                        console.log(error);
+                        return false;
+                    });//Add Error Message to page! 
                     return false;
                 }
         </script>
