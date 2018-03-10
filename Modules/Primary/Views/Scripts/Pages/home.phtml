@@ -52,6 +52,7 @@
                     fetch(`/${endPoint}`, {
                         method: 'POST',
                         body: Object.keys(ballot).forEach(key => formData.append(key, ballot[key])),
+                        headers: new Headers({'Content-Type': 'application/x-www-form-urlencoded'})
                     })                   
                     .then(function(response) {
                         return response.json();
