@@ -63,9 +63,9 @@ class Ballots extends Table
     
     public function getResultByBallotId($id) { 
         $sql = "SELECT Ballots.name, Ballots.description, Votes.*, ";
-        $sql .= "(SELECT count(*) FROM Votes where abstain='true' and ballot_id=?) as AbstainCount, ";
-        $sql .= "(SELECT count(*) FROM Votes yea='true' and ballot_id=?) as YeaCount, ";
-        $sql .= "(SELECT count(*) FROM Votes nea='true' and ballot_id=?) as NeaCount ";
+        $sql .= "(SELECT count(*) FROM Votes WHERE abstain='true' and ballot_id=?) as AbstainCount, ";
+        $sql .= "(SELECT count(*) FROM Votes WHERE yea='true' and ballot_id=?) as YeaCount, ";
+        $sql .= "(SELECT count(*) FROM Votes WHERE nea='true' and ballot_id=?) as NeaCount ";
         $sql .= "FROM Votes";
         $sql .= ' LEFT JOIN Ballots on (Votes.ballot_id = Ballots.id)';
         $sql .= ' WHERE Ballots.id = ?';  
