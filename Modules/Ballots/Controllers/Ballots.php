@@ -37,25 +37,25 @@ class Ballots extends Controller
         if(isset($_POST['process']) && $_POST['process'] === 'Create-Ballot')
         {
             //debug($_POST);
-            $valid = [false, false];
+            $this->valid = [false, false];
             //lets validate what we need to!
             if(isset($_POST['name']) && $_POST['name']) {
                  if(preg_match ('/^[a-zA-Z0-9 \-]+$/', $_POST['name'])) {
                     $name = $_POST['name'];
-                     $valid[0] = true;
+                     $this->valid[0] = true;
                  } else {
-                    $valid[0] = false;
+                    $this->valid[0] = false;
                  }
             }
             if(isset($_POST['description']) && $_POST['description']) {
                  if(preg_match ('/^[a-zA-Z0-9 \-!,.]+$/', $_POST['description'])) {
                     $description = $_POST['description'];
-                     $valid[1] = true;
+                     $this->valid[1] = true;
                  } else {
-                    $valid[1] = false;
+                    $this->valid[1] = false;
                  }
             }
-            if($valid[0] && $valid[1]) {
+            if($this->valid[0] && $this->valid[1]) {
                 $this->newBallet = $this->getModel('Ballot','Ballots');
                 $this->newBallet->name = $name;
                 $this->newBallet->description = $description;
@@ -71,8 +71,6 @@ class Ballots extends Controller
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
                     echo json_encode([$valid, $newBallet]);
-                } else {
-                    $this->valid = $valid;
                 }
             }
         }
