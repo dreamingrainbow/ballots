@@ -75,7 +75,7 @@ class Ballots extends Table
         $sth->bindParam(3, $id, PDO::PARAM_INT);
         $sth->bindParam(4, $id, PDO::PARAM_INT);
         $sth->execute();
-        return $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $sth->fetch(PDO::FETCH_ASSOC);
     }
     
     public function getYeaVotesByBallotId($id) {
