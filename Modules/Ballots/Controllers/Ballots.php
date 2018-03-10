@@ -123,9 +123,9 @@ class Ballots extends Controller
         if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
             $this->setNoRenderView();
             header('Content-Type: application/json');
-            echo json_encode($this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id')));
+            echo json_encode($this->getTable('Ballots','Ballots')->getResultByBallotId((int)$this->getRequest()->getParam('ballot_id')));
         } else {
-            $this->results = $this->getTable('Ballots','Ballots')->getResultByBallotId($this->getRequest()->getParam('ballot_id'));
+            $this->results = $this->getTable('Ballots','Ballots')->getResultByBallotId((int)$this->getRequest()->getParam('ballot_id'));
         }    
     }
 }
