@@ -75,7 +75,7 @@ class Ballots extends Table
         $sth->bindParam(3, $id, PDO::PARAM_INT);
         $sth->bindParam(4, $id, PDO::PARAM_INT);
         $sth->execute();
-        debug($sth->debugDumpParams());
+        debug($id,$sth->debugDumpParams());
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
     
