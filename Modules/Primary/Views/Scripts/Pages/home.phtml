@@ -28,15 +28,15 @@
                 function ballotLookUp() { 
                     const endPoint = '';        
                     const ballot_id = this.document.querySelector('input[name="ballot_id"]');
-                    fetch(`${endPoint}\${ballot_id}`)
+                    return fetch(`${endPoint}\${ballot_id}`)
                     .then(function(response) {
                         return response.json();
                     })
                     .then(function(ballot) {
                         console.log(ballot);
+                        return false;
                     })
-                    .catch( error => console.log(error));//Add Error Message to page!
-                    return false;
+                    .catch( error => console.log(error));//Add Error Message to page!                    
                 }
                 function createBallot() { 
                     return false;
