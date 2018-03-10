@@ -41,6 +41,7 @@ class Ballots extends Table
         } else {
             $sql .= ' ORDER BY Ballots.id LIMIT ?';
         }
+        debug($sql);
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
         if($offset !== 0) {            
             $sth->execute([$offset, $limit]);	
