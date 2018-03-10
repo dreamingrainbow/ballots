@@ -47,7 +47,7 @@
                     const endPoint = 'Create-Ballot';        
                     const name = this.document.querySelector('input[name="name"]').value;
                     const description = this.document.querySelector('input[name="description"]').value;
-                    fetch(`/${endPoint}`, {name, description,output:'json',process:'Create-Ballot'})
+                    fetch(`/${endPoint}`, {name, description,output:'json',process:'Create-Ballot'},{method: 'POST'})
                     .then(function(response) {
                         return response.json();
                     })
