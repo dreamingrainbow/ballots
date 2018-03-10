@@ -39,7 +39,7 @@ class Ballots extends Table
         $sql .= ' LIMIT ?,?';        
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
         $sth->execute([$limit, $offset]);	
-        return $sth->fetch(PDO::FETCH_ASSOC);  
+        return $sth->fetchAll(PDO::FETCH_ASSOC);  
     }
     
     public function getBallotById( $id ) { 
