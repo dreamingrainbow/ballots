@@ -34,8 +34,6 @@ class Ballots extends Controller
     *   Add A Ballot
     */
     public function add() {
-        
-            debug($_POST);
         if(isset($_POST['process']) && $_POST['process'] === 'Create-Ballot')
         {
             $this->valid = [false, false];
@@ -71,7 +69,7 @@ class Ballots extends Controller
                 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
-                    echo json_encode([$valid, $newBallet]);
+                    echo json_encode({valid:$this->valid});
                 }
             }
         }
