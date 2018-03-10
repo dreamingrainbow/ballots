@@ -79,32 +79,17 @@ class Ballots extends Controller
     *   Cast a vote for a Ballot
     */
     public function cast() {
-        $ballot_id = $this->getRequest()->getParam('ballot_id');
+        $ballot_id = (int)$this->getRequest()->getParam('ballot_id');
         if(!isset($ballot_id)) {
             return $this->fileNotFound('Ballot Id was missing, and ballot could not be found.');
         }
         if(isset($_POST['process']) && $_POST['process'] === 'Cast-Ballot')
         {            
             //lets validate what we need to!
-            if(isset($_REQUEST['vote']) && $_POST['vote']) {
-                $this->newVote = $this->getModel('Vote','Ballots');
-                switch(strtolower($_POST['vote'])) {
-                     case 'nea':
-                        $this->newVote->abstain = false;
-                        $this->newVote->yea = false;
-                        $this->newVote->nea = true;                    
-                        break;
-                     case 'yea':
-                        $this->newVote->abstain = false;
-                        $this->newVote->yea = false;
-                        $this->newVote->nea = true;
-                        break;
-                     case 'abstain':
-                     default:
-                        /* Dont need to do anyting its automatic...*/
-                        break;
-                 }
-            }
+            $this->newVote = $this->getModel('Vote','Ballots');
+            $this->newVote->abstain = $_POST['abstain'] == 'true' ? 'true' : 'false';
+            $this->newVote->yea = $_POST['yea'] == 'true' ? 'true' : 'false';
+            $this->newVote->nea = $_POST['nea'] == 'true' ? 'true' : 'false';
             if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                 $this->setNoRenderView();
                 header('Content-Type: application/json');
