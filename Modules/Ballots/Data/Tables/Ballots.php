@@ -36,7 +36,7 @@ class Ballots extends Table
     
     public function getBallots( $limit = 10, $offset = 0 ) { 
         $sql = 'SELECT Ballots.* FROM Ballots';
-        if($offset !== 0) {            
+        if($offset) {            
             $sql .= ' ORDER BY Ballots.id LIMIT :offset,:limit';
         } else {
             $sql .= ' ORDER BY Ballots.id LIMIT :offset';
