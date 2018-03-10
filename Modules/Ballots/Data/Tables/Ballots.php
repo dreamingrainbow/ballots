@@ -42,7 +42,7 @@ class Ballots extends Table
             $sql .= ' ORDER BY Ballots.id LIMIT ?';
         }
         $stmt = $this->connection()->prepare($sql);	
-        if($offset !== 0) {            
+        if($offset) {            
             $stmt->execute([$offset, $limit]);	
         } else {
             $stmt->execute([$limit]);
