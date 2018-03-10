@@ -49,7 +49,7 @@
                     }                     
                     var data = new FormData();
                     Object.keys(ballot).forEach(key => {data.append( key, ballot[key])});
-                    fetch(`/${endPoint}`, {method:"POST", body: data})
+                    fetch(`/${endPoint}/${ballot_id}`, {method:"POST", body: data})
                     .then(function(response) {
                         return response.json();
                     })
