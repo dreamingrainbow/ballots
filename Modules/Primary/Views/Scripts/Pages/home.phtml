@@ -11,12 +11,12 @@
             <li><a href="/Search">Search</a></li>
             <li><a href="/Create-Ballot">Create Ballot</a></li>            
         </ul>
-        <form onSubmit="ballotLookUp(this);">
+        <form onSubmit="ballotLookUp();">
             <label>Ballot Look-up<label>
             <input type="number" min=1 name="ballot_id" />
             <button type="submit">Search</button>
         </form>        
-        <form onSubmit="createBallot(this);">
+        <form onSubmit="createBallot();">
             <label>Ballot Name<label>
             <input type="text" name="name" />
             <label>Ballot Description<label>
@@ -24,13 +24,22 @@
             <button type="submit">Create Ballot</button>
         </form>
         <script>
-                function ballotLookUp(e) { 
-                    console.log(e,this);
-                    e.target.preventDefault();
+            
+                function ballotLookUp() { 
+                    const endPoint = '';        
+                    const ballot_id = this.body.querySelector('input[name="ballot_id"]');
+                    fetch(`${endPoint}\${ballot_id}`)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(ballot) {
+                        console.log(ballot);
+                    })
+                    .catch( error => console.log(error));//Add Error Message to page!
+                    return false;
                 }
-                function createBallot(e) { 
-                    console.log(e,this);
-                    e.target.preventDefault();
+                function createBallot() { 
+                    return false;
                 }
         </script>
     </body>
