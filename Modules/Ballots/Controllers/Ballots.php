@@ -69,7 +69,7 @@ class Ballots extends Controller
                 if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
                     $this->setNoRenderView();
                     header('Content-Type: application/json');
-                    echo json_encode({valid:$this->valid});
+                    echo json_encode(['valid' => $this->valid]);
                 }
             }
         }
