@@ -49,7 +49,6 @@ class Ballots extends Table
         } else {
             $stmt->bindParam(1, $limit, PDO::PARAM_INT);
         }
-        debug($limit,$offset);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     }
