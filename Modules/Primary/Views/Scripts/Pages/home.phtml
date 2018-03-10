@@ -33,7 +33,7 @@
         <script>
             
                 function ballotLookUp() { 
-                    const endPoint = 'Results';        
+                    const endPoint = 'Ballot';        
                     const ballot_id = this.document.querySelector('input[name="ballot_id"]').value;
                     fetch(`/${endPoint}/${ballot_id}?output=json`)
                     .then(function(response) {
@@ -51,7 +51,7 @@
                 }
             
                 function ballotResultsLookUp() { 
-                    const endPoint = 'Ballot';        
+                    const endPoint = 'Results';        
                     const ballot_id = this.document.querySelector('input[name="ballot_id"]').value;
                     fetch(`/${endPoint}/${ballot_id}?output=json`)
                     .then(function(response) {
