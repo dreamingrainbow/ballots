@@ -47,7 +47,7 @@ class Ballots extends Table
         } else {
             $stmt->execute([$limit]);
         }        
-        return $stmt->query(PDO::FETCH_ASSOC);  
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     }
     
     public function getBallotById( $id ) { 
