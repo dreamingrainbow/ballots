@@ -112,7 +112,7 @@ class Ballots extends Table
         $voteId = false;
         try
         {
-            $stmt = $this->connection()->prepare("INSERT INTO Ballots set ballot_id=?, abstain=?, yea=?, nea=?");
+            $stmt = $this->connection()->prepare("INSERT INTO Votes set ballot_id=?, abstain=?, yea=?, nea=?");
             try
             {
                 $stmt->bindParam(1, $id, PDO::PARAM_INT);
