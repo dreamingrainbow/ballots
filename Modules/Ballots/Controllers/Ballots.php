@@ -127,4 +127,17 @@ class Ballots extends Controller
             $this->results = $this->getTable('Ballots','Ballots')->getResultByBallotId((int)$this->getRequest()->getParam('ballot_id'));
         }    
     }
+    
+    /*
+    *   View Ballots
+    */
+    public function ballot() {
+        if(isset($_REQUEST['output']) && strtolower($_REQUEST['output']) === 'json') {
+            $this->setNoRenderView();
+            header('Content-Type: application/json');
+            echo json_encode($this->getTable('Ballots','Ballots')->getBallotId((int)$this->getRequest()->getParam('ballot_id')));
+        } else {
+            $this->results = $this->getTable('Ballots','Ballots')->getByBallotId((int)$this->getRequest()->getParam('ballot_id'));
+        }    
+    }
 }
