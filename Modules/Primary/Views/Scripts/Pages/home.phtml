@@ -34,7 +34,7 @@
             
                 function ballotLookUp() { 
                     const endPoint = 'Ballot';        
-                    const ballot_id = this.document.querySelector('input[name=ballot_id"]').value;
+                    const ballot_id = this.document.querySelector('input[name="ballot_id"]').value;
                     fetch(`/${endPoint}/${ballot_id}?output=json`)
                     .then(function(response) {
                         return response.json();
@@ -52,7 +52,7 @@
             
                 function ballotResultsLookUp() { 
                     const endPoint = 'Results';        
-                    const ballot_id = this.document.querySelector('input[name=""result_ballot_id"]').value;
+                    const ballot_id = this.document.querySelector('input[name="result_ballot_id"]').value;
                     fetch(`/${endPoint}/${ballot_id}?output=json`)
                     .then(function(response) {
                         return response.json();
