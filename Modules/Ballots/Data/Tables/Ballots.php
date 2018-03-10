@@ -113,8 +113,12 @@ class Ballots extends Table
         try
         {
             $stmt = $this->connection()->prepare("INSERT INTO Ballots set ballot_id=?, abstain=?, yea=?, nea=?");
+            $stmt->bindParam(1, $id, PDO::PARAM_INT);
+            $stmt->bindParam(2, $vote->abstain, PDO::PARAM_STR);
+            $stmt->bindParam(3, $vote->yea, PDO::PARAM_STR);
+            $stmt->bindParam(4, $vote->nea, PDO::PARAM_STR);
             $this->connection()->beginTransaction();
-            $stmt->execute([$id, $vote->abstain, $vote->yea, $vote->nea]);
+            $stmt->execute();
             $voteId = $this->connection()->lastInsertId();
             $this->connection()->commit();
             debug($stmt);
