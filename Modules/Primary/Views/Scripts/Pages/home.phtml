@@ -47,11 +47,12 @@
                     const endPoint = 'Create-Ballot';        
                     const name = this.document.querySelector('input[name="name"]').value;
                     const description = this.document.querySelector('input[name="description"]').value;
-                    const formData = new FormData();
+                    
                     const ballot = {name, description,output:'json',process:'Create-Ballot'};    
+                    const formData = new FormData(ballot);
                     fetch(`/${endPoint}`, {
                         method: 'POST',
-                        body: JSON.serialize(ballot),
+                        body: formData,
                         headers: new Headers({'Content-Type': 'application/x-www-form-urlencoded'})
                     })                   
                     .then(function(response) {
