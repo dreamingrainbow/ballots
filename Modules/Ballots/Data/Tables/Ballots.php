@@ -113,21 +113,16 @@ class Ballots extends Table
         try
         {
             $stmt = $this->connection()->prepare("INSERT INTO Ballots set ballot_id=?, abstain=?, yea=?, nea=?");
-            try
-            {
-                $this->connection()->beginTransaction();
-                $stmt->execute([$id, $vote->abstain, $vote->yea, $vote->nea]);
-                $voteId = $this->connection()->lastInsertId();
-                $this->connection()->commit();
-                return $voteId;
-            }
-            catch(PDOExecption $e) {
-                $this->connection->rollback();
-                print "Error!:". $e->getMessage() . "</br>";
-            }
+            $this->connection()->beginTransaction();
+            $stmt->execute([$id, $vote->abstain, $vote->yea, $vote->nea]);
+            $voteId = $this->connection()->lastInsertId();
+            $this->connection()->commit();
+            debug($stmt);
+            return $voteId;            
         }
         catch(PDOExeception $e)
         {
+            $this->connection->rollback();
             print "Error!:". $e->getMessage() . "</br>";
         }
     }
