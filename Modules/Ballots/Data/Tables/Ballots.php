@@ -116,7 +116,7 @@ class Ballots extends Table
             try
             {
                 $this->connection()->beginTransaction();
-                $stmt->execute([$vote->ballot_id, $vote->abstain, $vote->yea, $vote->nea]);
+                $stmt->execute([$id, $vote->abstain, $vote->yea, $vote->nea]);
                 $voteId = $this->connection()->lastInsertId();
                 $this->connection()->commit();
                 return $voteId;
