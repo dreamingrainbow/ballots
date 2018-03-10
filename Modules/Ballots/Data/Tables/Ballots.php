@@ -38,7 +38,7 @@ class Ballots extends Table
         $sql = 'SELECT Ballots.* FROM Ballots';
         $sql .= ' LIMIT ?,?';        
         $sth = $this->connection()->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);	
-        $sth->execute([$limit, $offset]);	
+        $sth->execute([$offset, $limit]);	
         return $sth->fetchAll(PDO::FETCH_ASSOC);  
     }
     
