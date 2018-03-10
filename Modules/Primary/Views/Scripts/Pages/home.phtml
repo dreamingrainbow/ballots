@@ -49,8 +49,9 @@
                     const description = this.document.querySelector('input[name="description"]').value;
                     
                     const ballot = {name, description,output:'json',process:'Create-Ballot'};  
-                    
-                    fetch(`/${endPoint}`, ballot)
+                    var data = new FormData();
+                    data.append( "json", JSON.stringify( ballot ) );
+                    fetch(`/${endPoint}`, {method:"POST", body: data})
                     .then(function(response) {
                         return response.json();
                     })
