@@ -26,9 +26,9 @@
         <script>
             
                 function ballotLookUp() { 
-                    const endPoint = '';        
+                    const endPoint = 'Ballots';        
                     const ballot_id = this.document.querySelector('input[name="ballot_id"]');
-                    return fetch(`${endPoint}\${ballot_id}`)
+                    return fetch(`\${endPoint}\${ballot_id}`)
                     .then(function(response) {
                         return response.json();
                     })
@@ -36,7 +36,10 @@
                         console.log(ballot);
                         return false;
                     })
-                    .catch( error => console.log(error));//Add Error Message to page!                    
+                    .catch( error => {
+                        console.log(error);
+                        return false;
+                    });//Add Error Message to page!                    
                 }
                 function createBallot() { 
                     return false;
