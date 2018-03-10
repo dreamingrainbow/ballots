@@ -7,7 +7,7 @@ class Pages extends Controller
     {
         if(isset($_REQUEST['limit']) && $_REQUEST['limit']) {
             if(preg_match ('/^[0-9]+$/', $_REQUEST['limit'])) {
-                $limit = $_REQUEST['limit'];
+                $limit =  (int)$_REQUEST['limit'];
             } else {
                 $limit = 10;        
             }
@@ -17,7 +17,7 @@ class Pages extends Controller
         
         if(isset($_REQUEST['offset']) && $_REQUEST['offset']) {
             if(preg_match ('/^[0-9]+$/', $_REQUEST['offset'])) {
-                $offset = $_REQUEST['offset'];
+                $offset = (int)$_REQUEST['offset'];
             } else {
                 $offset = 0;        
             }
