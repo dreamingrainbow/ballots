@@ -120,11 +120,14 @@ class Ballots extends Table
                 $stmt->bindParam(3, $vote->yea, PDO::PARAM_STR);
                 $stmt->bindParam(4, $vote->nea, PDO::PARAM_STR);
                 $this->connection()->beginTransaction();
-                $stmt->execute();
-                $voteId = $this->connection()->lastInsertId();
-                $this->connection()->commit();
-                debug($stmt->errorInfo());
-                return $voteId;
+                if(!$stmt->execute()) {                
+                    debug($stmt->errorInfo());
+                    $this->connection->rollback();
+                } else {
+                    $voteId = $this->connection()->lastInsertId();
+                    $this->connection()->commit();
+                    return $voteId;
+                }
             }
             catch(PDOExeception $e)
             {
