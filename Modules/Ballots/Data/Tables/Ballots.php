@@ -37,9 +37,9 @@ class Ballots extends Table
     public function getBallots( $limit = 10, $offset = 0 ) { 
         $sql = 'SELECT Ballots.* FROM Ballots';
         if($offset) {            
-            $sql .= ' ORDER BY Ballots.id LIMIT :offset,:limit';
+            $sql .= ' ORDER BY Ballots.id LIMIT ?,?';
         } else {
-            $sql .= ' ORDER BY Ballots.id LIMIT :offset';
+            $sql .= ' ORDER BY Ballots.id LIMIT ?';
         }
         
         $stmt = $this->connection()->prepare($sql);	
@@ -48,6 +48,7 @@ class Ballots extends Table
             $stmt->bindParam(2, $limit, PDO::PARAM_INT);
         } else {
             $stmt->bindParam(1, $limit, PDO::PARAM_INT);
+            
         }
         debug($stmt->execute());
         return $stmt->fetchAll(PDO::FETCH_ASSOC);  
