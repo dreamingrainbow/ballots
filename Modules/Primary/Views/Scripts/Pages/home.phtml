@@ -32,9 +32,9 @@
                 Vote Now On Ballot <?=$this->ballots[1]['id'];?><br/>
                 Name : <?=$this->ballots[1]['name'];?><br/>
                 Description : <?=$this->ballots[1]['description'];?><br/>
-                <button onClick="castBallot(<?=$this->ballots[1]['id'];?>, 'yea');">Yea</button>
-                <button onClick="castBallot(<?=$this->ballots[1]['id'];?>, 'nea');">Nea</button>
-                <button onClick="castBallot(<?=$this->ballots[1]['id'];?>, 'abstain');">Abstain</button>
+                <button onClick="castBallot(<?=$this->ballots[1]['id'];?>, 'yea');return false;">Yea</button>
+                <button onClick="castBallot(<?=$this->ballots[1]['id'];?>, 'nea');return false;">Nea</button>
+                <button onClick="castBallot(<?=$this->ballots[1]['id'];?>, 'abstain');return false;">Abstain</button>
                 <?=debug($this->ballots);?>
         <script>
                 function castBallot(ballot_id, vote) {
@@ -61,6 +61,7 @@
                     })
                     .then(function(ballot) {
                         console.log(ballot);
+                        return false;
                     })
                     .catch( error => {
                         console.log(error);
