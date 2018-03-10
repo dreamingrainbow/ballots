@@ -49,8 +49,7 @@
                     const description = this.document.querySelector('input[name="description"]').value;
                     fetch(`/${endPoint}`, {
                         method: 'POST',
-                        body: JSON.stringify({name, description,output:'json',process:'Create-Ballot'}), 
-                        headers: new Headers({'Content-Type': 'application/json'})
+                        body: JSON.stringify({name, description,output:'json',process:'Create-Ballot'})
                     })                   
                     .then(function(response) {
                         return response.json();
