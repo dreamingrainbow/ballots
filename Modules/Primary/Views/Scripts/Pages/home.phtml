@@ -50,7 +50,7 @@
                     
                     const ballot = {name, description,output:'json',process:'Create-Ballot'};  
                     
-                    $.post(`/${endPoint}`, ballot)
+                    fetch(`/${endPoint}`, ballot)
                     .then(function(response) {
                         return response.json();
                     })
