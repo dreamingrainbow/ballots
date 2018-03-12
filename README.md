@@ -7,7 +7,7 @@ Create A Ballot
 {
     "name"          :      String,
     "description"   :      String,
-    "Process"       :      "Create-Ballot"
+    "process"       :      "Create-Ballot"
 }
 ```
 
@@ -19,7 +19,8 @@ Cast your Ballot
     "ballot_id"     :       Int,
     "abstain"       :       true|false  ||    default true,
     "yea"           :       true|false  ||    default false,
-    "nea"           :       true|false  ||    default false
+    "nea"           :       true|false  ||    default false,
+    "process"       :       "Cast-Ballot"
 }
 ```
 
